@@ -8,8 +8,8 @@
   - name: create container
     proxmox:
       node: prox
-      api_user: root@pam
-      api_password: cypher!4
+      api_user: scotty@pam
+      api_password: 3nterprise
       api_host: prox
       password: tester1
       hostname: test-from-ansible
