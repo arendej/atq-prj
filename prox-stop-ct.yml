@@ -13,9 +13,10 @@
       api_host: prox
       password: tester1
       hostname: test-from-ansible
-      ostemplate: 'local:vztmpl/centos-7-default_20160205_amd64.tar.xz'
-      netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=192.168.1.61/24,bridge=vmbr0"}'
-      disk: 2 # 2GB disk size
-      nameserver: 8.8.8.8
-      cpus: 1
-      memory: 512
+      state: stopped
+#      ostemplate: 'local:vztmpl/centos-7-default_20160205_amd64.tar.xz'
+#      netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=192.168.1.61/24,bridge=vmbr0"}'
+#      disk: 2 # 2GB disk size
+#      nameserver: 8.8.8.8
+#      cpus: 1
+#      memory: 512

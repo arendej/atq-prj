@@ -13,7 +13,7 @@
       api_host: prox
       password: tester1
       hostname: test-from-ansible
-      state: started
+      state: restarted
 #      ostemplate: 'local:vztmpl/centos-7-default_20160205_amd64.tar.xz'
 #      netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=192.168.1.61/24,bridge=vmbr0"}'
 #      disk: 2 # 2GB disk size
