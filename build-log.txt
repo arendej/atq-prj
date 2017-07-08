@@ -46,5 +46,7 @@ http://docs.ansible.com/ansible/proxmox_module.html
 I have noted that I need some more practice managing git repos.
 -- when is the best time to use projects vs repos vs folders?.. best practice?
 
+I should try to get to know and use ansible vault if possible before end of the weekend.
+
 -------------------------------- end of July 7 entry.
 
