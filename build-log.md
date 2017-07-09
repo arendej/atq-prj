@@ -1,6 +1,6 @@
-Arctiq intro project - build log - Aaren De Jong
+**Arctiq intro project - build log - Aaren De Jong**
 
-Build log entry July 7, 2017
+*Build log entry July 7, 2017*
 
 - This is enough of a project that I will need to employ the method I go-to for such things, which is to split is into smaller manageable parts. 
 - Next I need to build my confident code first and documents my stopping points rather than get hung up on them.
@@ -44,9 +44,7 @@ http://docs.ansible.com/ansible/proxmox_module.html
 
 
 I have noted that I need some more practice managing git repos.
--- when is the best time to use projects vs repos vs folders?.. best practice?
 
 I should try to get to know and use ansible vault if possible before end of the weekend.
 
 -------------------------------- end of July 7 entry.
-
