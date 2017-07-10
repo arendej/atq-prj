@@ -1,6 +1,6 @@
 **ATQ-PRJ - README.md**
 
-*In order to run this set project..*
+*In order to run this project..*
 
 1) gen-hosts.yml will generate the ansible-hosts file for the subsequent tasks.
 2) from the atq-prj path, *ansible-playbook -i .hosts create-3-ct.yml* will run the task to create the LXC containers.
