@@ -36,13 +36,13 @@
 # created 3 hosts, at 192.168.1.61-63/24
 
 # now generate ansible-hosts file on ansible master, for the 3 containers.
-    - name: generate ansible inventory of the above created LXC containers
-      template:
-       #ensures the inventory is created on this ansible master
-        backup: yes # takes a backup of any existing.
-        force: yes # replaces existing.
-        state: present # ensures present
-        src: templates/gen-hosts.j2
-        dest: /home/scotty/ansible/atq-prj/hosts
-      when: ansible_hostname == "ansible.adj.home"
+#    - name: generate ansible inventory of the above created LXC containers
+#      template:
+#       #ensures the inventory is created on this ansible master
+#        backup: yes # takes a backup of any existing.
+#        force: yes # replaces existing.
+#        state: present # ensures present
+#        src: templates/gen-hosts.j2
+#        dest: /home/scotty/ansible/atq-prj/hosts
+#      when: ansible_hostname == "ansible.adj.home"
 # at this point the 3 containers and the hosts file including them, are ready.

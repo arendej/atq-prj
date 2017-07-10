@@ -3,7 +3,7 @@
     hostnm: "{{ ansible_hostname }}"
     ip: "{{ ansible_eth0.ipv4.address }}"
     hostfqdn: "{{ ansible_fqdn }}"
-- name: set host file from a j2 templatei
+- name: set host file from a j2 template
   template:
     src: templates/etchosts.j2
     dest: /etc/hosts
