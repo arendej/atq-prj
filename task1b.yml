@@ -1,0 +1,18 @@
+--- # full playbook to create 3 CTs.
+- hosts: project-task2 # contains only the hypervisor proxmox and the ansible master.
+  connection: ssh
+  gather_facts: yes
+  user: scotty # this is the operative ansible user
+  become: yes
+  vars_files:
+    - init_vars.yml # contains the variables for building the CTs.
+  tasks:
+    - name: install apache on a CT.
+      yum:
+        name: httpd
+        state: installed
+    - name: make apache run run run
+      service: httpd
+        enabled: yes
+        state: started
+#    - name: pull html file from github and post it to all 3 servers.
