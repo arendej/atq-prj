@@ -49,6 +49,8 @@ I should try to get to know and use ansible vault if possible before end of the 
 
 -------------------------------- end of July 7 entry
 
+*Build log entry July 9, 2017*
+
 Built out the j2 template files today.
 I seems ansible doesn't allow multiple with_items loop-lists in a single play. This may need to be split into individual plays and
 included into the main playbook. 
