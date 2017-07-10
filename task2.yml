@@ -18,27 +18,23 @@
         service: ntp
         state: enabled
       ignore_errors: yes # allows this to continue if firewalld isn't there.
-    - name: enable ntpd at boot.
-      service: ntpd
-      enabled: yes
-      state: started
+    - name: enable ntpd at boot
+      service: name=ntpd enabled=yes state=started
     - name: set ntp on host1
       template:
+        src: templates/ntp1.j2
+        dest: /etc/ntp.conf
+        backup: yes
       when:
         ansible_hostname == "{{ ct1-fqdn }}"
-      src: templates/ntp1.j2
-      dest: /etc/ntp.conf
-      backup: yes
     - name: set ntp on host 2 and host 3 (the same)
       template:
+        src: templates/ntp2-3.j2
+        dest: /etc/ntp.conf
+        backup: yes
       when:
         (ansible_hostname == "{{ ct2-fqdn }}") or
         (ansible_hostname == "{{ ct3-fqdn }}")
-      src: templates/ntp2-3.j2
-      dest: /etc/ntp.conf
-      backup: yes      
-      
 # reload ntpd on the 3 CTs, so the config is taken.
     - name: reload ntpd config.
-      service: ntpd
-      state: reloaded
+      service: name=ntpd state=reloaded

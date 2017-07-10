@@ -5,9 +5,6 @@
   user: scotty # this is the operative ansible user
   vars_files:
     - init_vars.yml # contains the variables for building the CTs.
-  vars:
-    - 4thoctet : ["61","62","63"]
-    - 3hosts : ["host1.adj.home","host2.adj.home","host3.adj.home"]
   tasks:
     - name: create containers 1 thru 3
       proxmox:
@@ -17,12 +14,18 @@
         api_password: 3nterprise
         api_host: prox
         password: tester0 # this will be common on all 3 CTs.
-        hostname: "{{ item }}"
-        with_items: 3hosts
+        hostname: "host{{ item }}"
+#       with_items:
+#         - 1
+#         - 2
+#         - 3
         pool: project
         ostemplate: 'local:vztmpl/centos-7-default_20160205_amd64.tar.xz'
-        netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=192.168.1.{{ item }}/24,bridge=vmbr0"}'
-        with_items: 4thoctet
+        netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=192.168.1.6{{ item }}/24,bridge=vmbr0"}'
+        with_items:
+          - 1
+          - 2
+          - 3
         disk: 2 # 2GB disk volume size
         nameserver: 8.8.8.8 # the Google DNS
         cpus: 1
