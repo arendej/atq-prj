@@ -1,0 +1,12 @@
+--- # play to set the /ets/hosts files on a VM or CT.
+  vars:
+    hostnm: "{{ ansible_hostname }}"
+    ip: "{{ ansible_eth0.ipv4.address }}"
+    hostfqdn: "{{ ansible_fqdn }}"
+- name: set host file from a j2 templatei
+  template:
+    src: templates/etchosts.j2
+    dest: /etc/hosts
+    owner: root
+    group: wheel
+    mode: 0644

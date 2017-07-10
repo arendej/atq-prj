@@ -1,0 +1,47 @@
+# Ansible-j2 templated this atq-prj inventory file.
+# gen-hosts inventory file for this project.
+
+prox.adj.home
+Ansible.adj.home
+{{ct1-fqdn}}
+{{ct2-fqdn}}
+{{ct3-fqdn}}
+
+[prox]
+prox.adj.home
+[ansible]
+Ansible.adj.home
+
+[project-init:children]
+prox
+ansible
+
+[project-task2]
+{{ct1-fqdn}}
+{{ct2-fqdn}}
+{{ct3-fqdn}}
+
+# ip fqdn and hostname
+# ct 1
+[{{ct1hn}}]
+{{ct1-fqdn}}
+[[{{ct1hn}}:vars]]
+{{ct1-ip}} 
+{{ct1hn}}
+{{ct1fqdn}}
+
+# ct 2
+[{{ct2hn}}]
+{{ct2-fqdn}}
+[[{{ct2hn}}:vars]]
+{{ct2-ip}} 
+{{ct2hn}}
+{{ct2fqdn}}
+
+# ct 3
+[{{ct3hn}}]
+{{ct3-fqdn}}
+[[{{ct3hn}}:vars]]
+{{ct3-ip}} 
+{{ct3hn}}
+{{ct3fqdn}}
