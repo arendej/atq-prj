@@ -47,4 +47,18 @@ I have noted that I need some more practice managing git repos.
 
 I should try to get to know and use ansible vault if possible before end of the weekend.
 
--------------------------------- end of July 7 entry.
+-------------------------------- end of July 7 entry
+
+Built out the j2 template files today.
+I seems ansible doesn't allow multiple with_items loop-lists in a single play. This may need to be split into individual plays and
+included into the main playbook. 
+
+Otherwise, the first playbook is passing ansible-lint.
+
+Up next is to fix the above with_items issue and ansible-lint the other playbook for task 2.
+
+Task 2 is built now. It generates the configs from all the j2 templates. 
+
+After that I need to clean up the un-used yml files and do a test run.
+
+--------------------------------- end of July 9, 2017 entry
