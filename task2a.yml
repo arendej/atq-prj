@@ -1,0 +1,30 @@
+--- # prj-atq .. task 2 -- modify /etc/hosts
+- hosts: project-task2
+  connection: ssh
+  user: scotty
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - init_vars.yml
+  tasks:
+    - name: template the etc/hosts for host1
+      template:
+        src: templates/etchost1.j2
+        dest: /etc/hosts
+        backup: yes
+      when:
+        ansible_hostname == "{{ ct1-fqdn }}"
+    - name: template the etc/hosts for host2
+      template:
+        src: templates/etchost2.j2
+        dest: /etc/hosts
+        backup: yes
+      when:
+        ansible_hostname == "{{ ct2-fqdn }}"
+    - name: template the etc/hosts for host3
+      template:
+        src: templates/etchost3.j2
+        dest: /etc/hosts
+        backup: yes
+      when:
+        ansible_hostname == "{{ ct3-fqdn }}"
