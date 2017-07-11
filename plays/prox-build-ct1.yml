@@ -15,11 +15,11 @@
     password: tester0
     hostname: host1.adj.home
     pool: project
-    ostemplate: 'local:vztmpl/centos-7-default_20160205_amd64.tar.xz'
+    ostemplate: 'local:vztmpl/centos7.tar.xz'
     netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=192.168.1.61/24,bridge=vmbr0"}'
     disk: 2 # 2GB disk size
     nameserver: 8.8.8.8
     cpus: 1
     memory: 512
-    pubkey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQGD/I7IR6QqMHSmYys9QY621rKF10eh5FSycwrCGlKSq5wEMLMmMF0w56EzdJEJs7cvRG0Jdg359iL37Yfr3h3590kB45xrLmidAut4XCrU2trJFIEqjm9m4GJarQOCb4FbhRU44HjoLY4ZtcYkhAKy3oydlgYqUcg0BCV9xf16kj3vogytjOl7jmR6syJRJI1O44XHx+fN/WLqkHyJqxvEGiwTOzBDBvqi96nNJFYfl2fKWWJycfAKOb43zsR1PVHDNVP22JBk9dD8pjDabd/JE0b8HAJJT9FRUQn4iOU1d8sBvbqyNySkj5WHjoPjNeV63S7clj+/EV5n/BgK1UxN scotty@amobpc.adj.home' 
+    pubkey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABE3PPpPcanoWJ3LfG/zAo9zWY5/0XgBQZ55BsVsiYwOAje2m+I02M8cPTbcDlMQ1yPvCj/p9Oa81+ZgetzgD9JDEhO4kWjmJoDf13b3cgwt83OLa3zg95v+a/+jXgWZUSXB6aWs5+/s4VwXG8m7DtSq/vpT9pAsFPz0wbcaxgxCk7CeQLe7NJB6JeefbtkyVYPGnw8WhBbkfzFzYY2u+kmre7BXA2k6JoYBmIiC7guX6mkZzEWOp/nyyIof6Wd9N/nllBWS+3Sp84Ykj7BQ0ZupZfoUd3aHHxT7dqIhIZIqFR4R6iO8LkmB5xN+FUGL4hKPdq92Q4SBRiizgfq5rieU2u4POE9j/MlqfhgvBgiu8M//mP scotty@Ansible' 
     unprivileged: true
