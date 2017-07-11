@@ -1,16 +1,21 @@
 --- # now generate ansible-hosts file on ansible master, for the 3 containers.
 - hosts: localhost #this ansible master
   connection: local
+  become: yes
   user: scotty
+  vars_files:
+    - init_vars.yml
   tasks:
     - name: generate ansible inventory of the above created LXC containers
       template:
       #ensures the inventory is created on this ansible master
         backup: yes # takes a backup of any existing.
         force: yes # replaces existing.
-        state: present # ensures present
-        src: templates/gen-hosts.j2
+        src: templates/genhosts.j2
         dest: /home/scotty/ansible/atq-prj/hosts
-    # when: ansible_hostname == "ansible.adj.home"
-
-
+    - name: setup local etchosts
+      lineinfile: state=present path=/etc/hosts insertafter=EOF line={{ item }}
+      with_items:
+        - "{{ct1ip}} {{ct1fqdn}} {{ct1hn}}"
+        - "{{ct2ip}} {{ct2fqdn}} {{ct2hn}}"
+        - "{{ct3ip}} {{ct3fqdn}} {{ct3hn}}"

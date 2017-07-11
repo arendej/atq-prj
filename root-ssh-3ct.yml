@@ -1,0 +1,13 @@
+--- # This playbook sets up ssh and scotty user on the 3 containers
+- hosts: prox
+  connection: ssh
+  user: scotty
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: setup ssh and scotty into CTs
+      raw: "pct exec {{ item }} -- bash -c 'yum install -y openssh-server ; systemctl enable sshd ; systemctl start sshd ; useradd -G wheel scotty ; mkdir -p /home/scotty/.ssh/ ; cp /root/.ssh/authorized_keys /home/scotty/.ssh/'"
+      with_items:
+        - 124
+        - 125
+        - 126

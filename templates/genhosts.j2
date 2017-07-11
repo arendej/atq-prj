@@ -3,9 +3,9 @@
 
 prox.adj.home
 Ansible.adj.home
-{{ct1-fqdn}}
-{{ct2-fqdn}}
-{{ct3-fqdn}}
+{{ct1fqdn}}
+{{ct2fqdn}}
+{{ct3fqdn}}
 
 [prox]
 prox.adj.home
@@ -17,31 +17,31 @@ prox
 ansible
 
 [project-task2]
-{{ct1-fqdn}}
-{{ct2-fqdn}}
-{{ct3-fqdn}}
+{{ct1fqdn}}
+{{ct2fqdn}}
+{{ct3fqdn}}
 
 # ip fqdn and hostname
 # ct 1
 [{{ct1hn}}]
-{{ct1-fqdn}}
-[[{{ct1hn}}:vars]]
-{{ct1-ip}} 
-{{ct1hn}}
 {{ct1fqdn}}
+[{{ct1hn}}:vars]
+ct1ip={{ct1ip}} 
+ct1hn={{ct1hn}}
+ct1fqdn={{ct1fqdn}}
 
 # ct 2
 [{{ct2hn}}]
-{{ct2-fqdn}}
-[[{{ct2hn}}:vars]]
-{{ct2-ip}} 
-{{ct2hn}}
 {{ct2fqdn}}
+[{{ct2hn}}:vars]
+ct2ip={{ct2ip}} 
+ct2hn={{ct2hn}}
+ct2fqdn={{ct2fqdn}}
 
 # ct 3
 [{{ct3hn}}]
-{{ct3-fqdn}}
-[[{{ct3hn}}:vars]]
-{{ct3-ip}} 
-{{ct3hn}}
 {{ct3fqdn}}
+[{{ct3hn}}:vars]
+ct3ip={{ct3ip}} 
+ct3ip={{ct3hn}}
+ct3fqdn={{ct3fqdn}}

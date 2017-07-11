@@ -1,3 +1,6 @@
+# no longer need this...  but keeping the vars section for reference.
+#
+#
 --- # play to set the /ets/hosts files on a VM or CT.
   vars:
     hostnm: "{{ ansible_hostname }}"

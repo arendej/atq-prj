@@ -1,0 +1,25 @@
+--- # create LXC container
+#- hosts: prox
+#  user: scotty
+  #become: true
+#  gather_facts: smart
+#  connection: ssh
+#  tasks:      
+- name: create container one
+  proxmox:
+    state: present
+    node: prox
+    api_user: scotty@pam
+    api_password: 3nterprise
+    api_host: prox
+    password: tester0
+    hostname: host1.adj.home
+    pool: project
+    ostemplate: 'local:vztmpl/centos-7-default_20160205_amd64.tar.xz'
+    netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=192.168.1.61/24,bridge=vmbr0"}'
+    disk: 2 # 2GB disk size
+    nameserver: 8.8.8.8
+    cpus: 1
+    memory: 512
+    pubkey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQGD/I7IR6QqMHSmYys9QY621rKF10eh5FSycwrCGlKSq5wEMLMmMF0w56EzdJEJs7cvRG0Jdg359iL37Yfr3h3590kB45xrLmidAut4XCrU2trJFIEqjm9m4GJarQOCb4FbhRU44HjoLY4ZtcYkhAKy3oydlgYqUcg0BCV9xf16kj3vogytjOl7jmR6syJRJI1O44XHx+fN/WLqkHyJqxvEGiwTOzBDBvqi96nNJFYfl2fKWWJycfAKOb43zsR1PVHDNVP22JBk9dD8pjDabd/JE0b8HAJJT9FRUQn4iOU1d8sBvbqyNySkj5WHjoPjNeV63S7clj+/EV5n/BgK1UxN scotty@amobpc.adj.home' 
+    unprivileged: true

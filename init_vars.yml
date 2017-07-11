@@ -2,13 +2,13 @@
 # these will feed the gen-hosts.j2 template..
 
 ct1hn: host1
-ct3-fqdn: host1.adj.home
-ct3-ip: 192.168.1.61
+ct1fqdn: host1.adj.home
+ct1ip: 192.168.1.61
 
 ct2hn: host2
-ct3-fqdn: host2.adj.home
-ct3-ip: 192.168.1.62
+ct2fqdn: host2.adj.home
+ct2ip: 192.168.1.62
 
 ct3hn: host3
-ct3-fqdn: host3.adj.home
-ct3-ip: 192.168.1.63
+ct3fqdn: host3.adj.home
+ct3ip: 192.168.1.63
