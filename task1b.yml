@@ -8,7 +8,7 @@
   vars_files:
     - init_vars.yml # contains the variables for building the CTs.
   tasks:
-    - name: install apache on a CT.
+    - name: install apache on CTs.
       yum:
           update_cache: yes
           name: httpd

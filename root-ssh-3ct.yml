@@ -4,9 +4,11 @@
   user: scotty
   become: yes
   become_method: sudo
+  vars:
+    - pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABE3PPpPcanoWJ3LfG/zAo9zWY5/0XgBQZ55BsVsiYwOAje2m+I02M8cPTbcDlMQ1yPvCj/p9Oa81+ZgetzgD9JDEhO4kWjmJoDf13b3cgwt83OLa3zg95v+a/+jXgWZUSXB6aWs5+/s4VwXG8m7DtSq/vpT9pAsFPz0wbcaxgxCk7CeQLe7NJB6JeefbtkyVYPGnw8WhBbkfzFzYY2u+kmre7BXA2k6JoYBmIiC7guX6mkZzEWOp/nyyIof6Wd9N/nllBWS+3Sp84Ykj7BQ0ZupZfoUd3aHHxT7dqIhIZIqFR4R6iO8LkmB5xN+FUGL4hKPdq92Q4SBRiizgfq5rieU2u4POE9j/MlqfhgvBgiu8M//mP scotty@Ansible"
   tasks:
     - name: setup ssh and scotty into CTs
-      raw: "pct exec {{ item }} -- bash -c 'yum install -y openssh-server ; systemctl enable sshd ; systemctl start sshd ; useradd -G wheel scotty ; mkdir -p /home/scotty/.ssh/ ; cp /root/.ssh/authorized_keys /home/scotty/.ssh/'"
+      raw: "pct exec {{ item }} -- bash -c 'yum install -y deltarpm ; yum install -y vim openssh-server sudo ; systemctl enable sshd ; systemctl start sshd ; useradd -G wheel scotty ; mkdir -p /home/scotty/.ssh/ ; cp /root/.ssh/authorized_keys /home/scotty/.ssh/ ; echo '%wheel ALL=(ALL) NOPASSWD: ALL' | sudo EDITOR='tee -a' visudo'"
       with_items:
         - 124
         - 125
