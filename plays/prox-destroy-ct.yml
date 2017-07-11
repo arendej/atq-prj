@@ -1,19 +1,23 @@
 --- # create LXC container
 - hosts: prox
   user: scotty
-  #become: true
+  become: true
   gather_facts: smart
   connection: ssh
-  tasks:      
-  - name: create container
-    proxmox:
-      state: absent
-      node: prox
-      api_user: scotty@pam
-      api_password: 3nterprise
-      api_host: prox
-      password: tester1
-      hostname: test-from-ansible
+  tasks:
+    - name: destroy container
+      proxmox:
+        state: absent
+        node: prox
+        api_user: scotty@pam
+        api_password: 3nterprise
+        api_host: prox
+        password: tester0
+        hostname: "host{{ item }}.adj.home"
+      with_items:
+          - 1
+          - 2
+          - 3
 #      ostemplate: 'local:vztmpl/centos-7-default_20160205_amd64.tar.xz'
 #      netif: '{"net0":"name=eth0,gw=192.168.1.1,ip=192.168.1.61/24,bridge=vmbr0"}'
 #      disk: 2 # 2GB disk size
