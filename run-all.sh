@@ -22,11 +22,10 @@ ansible-playbook gen-hosts.yml -v
 ansible-playbook -i hosts task1a.yml -v
 
 #step 3 - give the 3 containers vim,ssh,sudo
-ansible-playbook -i hosts root-ssh-3ct.yml -v
+ansible-playbook -i hosts root-ssh-3ct.yml -vv
 
-
-
-#step 4 - install apache on containers via ansible
+#step 4 - install apache on containers via ansible & add html page.
+ansible-playbook -i hosts task1b.yml -v
 
 #step 5 - task2a.yml sets /etc/hosts files on containers
 ansible-playbook -i hosts task2a.yml -v
@@ -34,12 +33,4 @@ ansible-playbook -i hosts task2a.yml -v
 #step 6 - task2b.yml sets the ntp.conf on the containers
 
 #step 7 - all done.
-
-#step 8 - 
-
-#step 10 - 
-
-#step 11 - 
-
-
 
