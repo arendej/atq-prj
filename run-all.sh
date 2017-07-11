@@ -24,8 +24,13 @@ ansible-playbook -i hosts task1a.yml -v
 #step 3 - give the 3 containers vim,ssh,sudo
 ansible-playbook -i hosts root-ssh-3ct.yml -vv
 
+# (test ssh to the hosts by hand)
+# (insert manual ssh fingerprint check here if needed)
+
 #step 4 - install apache on containers via ansible & add html page.
 ansible-playbook -i hosts task1b.yml -v
+
+#failed on httpd install.. not my fault.
 
 #step 5 - task2a.yml sets /etc/hosts files on containers
 ansible-playbook -i hosts task2a.yml -v

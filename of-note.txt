@@ -1,0 +1,16 @@
+* httpd wouldn't install on the containers due to some error..
+
+https://github.com/docker/hub-feedback/issues/461
+
+https://txlab.wordpress.com/2017/04/26/cpio-cap_set_file-error-when-installing-httpd-rpm-inside-an-lxc-container/
+
+
+had to add these to 
+/usr/share/lxc/config/centos.common.conf
+---
+lxc.cap.drop = mac_admin mac_override setpcap
+lxc.cap.drop = sys_module sys_nice sys_pacct
+lxc.cap.drop = sys_rawio sys_time
+---
+
+and the restart the containers.

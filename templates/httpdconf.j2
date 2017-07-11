@@ -1,0 +1,17 @@
+# httpd conf template file for atq.conf
+#
+
+Listen *:80
+
+Alias / "/var/www/html/"
+
+<VirtualHost *:80>
+DocumentRoot "/var/www/html"
+ServerName {{ ansible_eth0.ipv4.address }}
+<Directory "/var/www/html">
+    Options Indexes FollowSymlinks
+    AllowOverride None
+    Require all granted
+</Directory>
+
+</VirtualHost>

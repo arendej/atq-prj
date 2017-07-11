@@ -9,8 +9,8 @@
   tasks:
     - name: install/verify ntpd is installed. # install NTP if need be.
       yum:
-        pkg: ntpd
-        state: present
+        name: ntpd
+        state: installed
     - name: ensure firewall allows ntp. # open firewalld for ntp
       firewalld:
         immediate: yes

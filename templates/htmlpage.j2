@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Hello Arctiq, from Aaren's 1st Project</title>
+</head>
+
+<body bgcolor="white">
+<font color="light blue" size="6" face="sans-serif">
+
+<h3>Hello Arctiq team</h3>
+
+This server is: <br/>
+<a href="{{ ansible_eth0.ipv4.address }}" />
+
+<p>
+Our servers are: <br/>
+{{ct1ip}} {{ct1hn}} <br/>
+{{ct2ip}} {{ct2hn}} <br/>
+{{ct3ip}} {{ct3hn}} <br/>
+<br/>
+(this info taken from variables in the inventory or the init_vars.yml) 
+</p>
+
+<p>This project uses<img src="http://antark.net/wp-content/uploads/2014/09/ants-pests-argentine1.jpg" width=321 height=131 /> ible.
+</p>
+</font>
+<p><font color="light blue" size="1" face="sans-serif">
+I'll see myself out now.
+</font></p>
+
+</body>
+
+</html>
