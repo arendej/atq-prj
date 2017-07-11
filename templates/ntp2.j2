@@ -1,4 +1,4 @@
-# host1 ntp.conf
+# host2-3 ntp.conf
 # For more information about this file, see the man pages
 # ntp.conf(5), ntp_acc(5), ntp_auth(5), ntp_clock(5), ntp_misc(5), ntp_mon(5).
 
@@ -6,16 +6,16 @@ driftfile /var/lib/ntp/drift
 
 restrict default nomodify notrap nopeer noquery kod limited
 
-restrict {{ct1ip}}/24 nomodify notrap
+restrict {{ct2ip}}/24 nomodify notrap
 restrict 127.0.0.1
 restrict ::1
 
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
-       server 0.us.pool.ntp.org iburst
-       server 1.us.pool.ntp.org iburst
-       server 2.us.pool.ntp.org iburst
-       server 3.us.pool.ntp.org iburst
+       server 0.ca.pool.ntp.org iburst
+       server 1.ca.pool.ntp.org iburst
+       server 2.ca.pool.ntp.org iburst
+       server 3.ca.pool.ntp.org iburst
 
 includefile /etc/ntp/crypto/pw
 
