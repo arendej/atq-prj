@@ -1,15 +1,15 @@
 --- # prj-atq .. task 2 -- modify /etc/hosts and the setup & configure ntp info.
 - hosts: project-task2
   connection: ssh
-  user: scotty
-  become: yes
+  remote_user: root
+#  become: yes
   gather_facts: yes
   vars_files:
     - init_vars.yml
   tasks:
     - name: install/verify ntpd is installed. # install NTP if need be.
       yum:
-        name: ntpd
+        name: ntp
         state: installed
     - name: ensure firewall allows ntp. # open firewalld for ntp
       firewalld:
@@ -26,15 +26,15 @@
         dest: /etc/ntp.conf
         backup: yes
       when:
-        ansible_hostname == "{{ ct1-fqdn }}"
+        ansible_fqdn == "host1.adj.home"
     - name: set ntp on host 2 and host 3 (the same)
       template:
         src: templates/ntp2-3.j2
         dest: /etc/ntp.conf
         backup: yes
       when:
-        (ansible_hostname == "{{ ct2-fqdn }}") or
-        (ansible_hostname == "{{ ct3-fqdn }}")
+        (ansible_fqdn == "host2.adj.home") or
+        (ansible_fqdn == "host3.adj.home")
 # reload ntpd on the 3 CTs, so the config is taken.
     - name: reload ntpd config.
       service: name=ntpd state=reloaded

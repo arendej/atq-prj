@@ -36,6 +36,6 @@ ansible-playbook -i hosts task1b.yml -v
 ansible-playbook -i hosts task2a.yml -v
 
 #step 6 - task2b.yml sets the ntp.conf on the containers
+ansible-playbook -i hosts task2b.yml -v
 
-#step 7 - all done.
-
+#done
