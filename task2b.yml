@@ -27,14 +27,20 @@
         backup: yes
       when:
         ansible_fqdn == "host1.adj.home"
-    - name: set ntp on host 2 and host 3 (the same)
+    - name: set ntp on host2
       template:
-        src: templates/ntp2-3.j2
+        src: templates/ntp2.j2
         dest: /etc/ntp.conf
         backup: yes
       when:
-        (ansible_fqdn == "host2.adj.home") or
-        (ansible_fqdn == "host3.adj.home")
+        ansible_fqdn == "host2.adj.home"
+    - name: set ntp on host3
+      template:
+        src: templates/ntp3.j2
+        dest: /etc/ntp.conf
+        backup: yes
+      when: 
+        ansible_fqdn == "host3.adj.home"
 # reload ntpd on the 3 CTs, so the config is taken.
     - name: reload ntpd config.
       service: name=ntpd state=reloaded
