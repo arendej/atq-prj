@@ -1,3 +1,54 @@
+# Welcome!
+
+This here is my mission presentation.
+
+Why LXC containers within Proxmox VE 
+ - seemed to be the fastest local way to get a functional VM-like environment
+ - my lack of knowledge with spawning EC2 or GCE instances is self admitted - learning is due here
+ - troubleshooting the underlying environment is familiar to me, so I can focus more on Ansible, or so I mostly thought.
+ - I expected to solve some unknowns I've never had the reason to encounter - learning to do
+ - perhaps this serves as the reason why cloud instances are better spun up than LXCs on a hypervisor.. ?
+ - I do get to keep all the data local and secure within my LAN.. not that it really needs to be, in this case.
+
+Why separate j2 files
+ - I did learn to use jinja2 templates, but after further research, I need more research
+ - There's much more to jinja2 templates... including logic, conditionals, etc.
+ - Shouldn't be confused with variable substitution
+ - When using j2, be aware of variable precedence in Ansible
+
+
+Snags :
+
+ - see notes within the bash wrapper pasted below below.
+ - prepping LXCs for Ansible
+ - unique environment
+ -- Proxmox isn't very common, but it is production worthy.
+ -- LXC containers aren't common either, but server a good function -- minimalistic Linux without KVM overhead.
+ - known bugs in Proxmox Ansible module - the API prefers 'security?' over function
+ -- the module relies on the 'pip install' of 'proxmoxer' and 'requests' on Ansible master.
+ - known bugs with httpd and ntpd inside LXC containers
+ -- this means I couldn't turn on the services, though I did create appropriate config files from templates.
+ - Ansible is REALLY picky about with_items loops!!!
+
+After all the above (things I learned / observed) :
+
+ - I've learned that some platforms work less ideally than previously thought, due to pre-conceived comfort levels
+ - Ansible is not amazing at telling you what is wrong, but if you know Python or JSON it helps -- I knew this already
+ - RTFM - I know this but I skim over too fast sometimes.
+ - I've gained a healthy chunk more Github practice. -- and now I plan to use it more.
+ - using ansible-lint is very helpful
+ - I'd like to rebuild this for a different platform, such as 'project-atomic' or Google Cloud, or AWS, or Docker.
+ - While my run of playbooks for this project does get it done, it's a little less elegant than I'd hoped
+ -- I'm convinced there's a more ideal way to puth this all together.. I'm thinking Ansible roles & more effective j2 templating.
+ - Given the time I had, I'm not satisfied with the quality of all of it, and I believe I have still much to improve upon. 
+ - I am impressed that I could get this far having never done it with this platform before.
+ - This presents a chance for building some best-practice material, regardless of platform.
+ - I was able to write near-perfect-syntax Ansible for 3 complete task*.yml files.. a helpful confidence boost.
+ - This was slightly more time-consuming than I had planned.. likely due to the unique environment.
+ - My git commit messages are on an improving incline.
+
+--------------------------------------------------
+
 * httpd wouldn't install on the containers due to some error..
 
 https://github.com/docker/hub-feedback/issues/461
@@ -13,4 +64,70 @@ lxc.cap.drop = sys_module sys_nice sys_pacct
 lxc.cap.drop = sys_rawio sys_time
 ---
 
-and the restart the containers.
+and the restart the containers
+
+------------------------------------------------
+
+
+The Bash wrapper for this set of Ansible plays is the best way to see the overview of how this executes.
+I've placed it below and added further comments.
+
+# wrapper for my atq-prj project, uses Ansible.
+#
+# Ansible dependency files..
+# - gen-hosts.yml
+# - templates/genhosts.j2
+# - task{1..2}{a..b}.yml
+# - templates/etchost{1..3}.j2
+# - templates/ntp{1,2,3}.j2
+# - plays/prox-build-ct{1..3}.yml
+# - plays/start3-cts.yml
+# - init_vars.yml
+#
+#
+
+
+
+#step 1 - generate project inventory hosts file
+ansible-playbook gen-hosts.yml -v
+
+#This uses a j2 template of a hosts file, to generate a hosts file. It uses init_vars.yml to get things done.
+
+#step 2 - task1a.yml creates the lxc containers, and starts them
+ansible-playbook -i hosts task1a.yml -v
+
+# Unfortunately, the proxmox module seems to have problems with more than one build per playbook. This appears to be a known bug.
+
+#step 3 - give the 3 containers vim,ssh,sudo
+ansible-playbook -i hosts root-ssh-3ct.yml -vv
+
+# This was a learning experience.. building LXC in proxmox gives 3 methods for non-ssh access to the shell of the host. 
+# PCT attach was the most direct, as it presents a direct root bash shell for sending in commands.
+# This appears to be the most ideal way to strap in openssh-server, start it, and affix public keys for Ansible to take over later.
+
+# (test ssh to the hosts by hand)
+# (insert manual ssh fingerprint check here if needed)
+# Manual ssh known-hosts population would be needed if I hadn't already done it before with these hosts.
+# This presents an investigative opportunity, as I'm sure there must be a better way to do this.
+
+#step 4 - install apache on containers via ansible & add html page.
+ansible-playbook -i hosts task1b.yml -v
+
+#failed on httpd install.. not my fault.
+# even though httpd doesn't install on these LXCs, the configs and files are generated.
+
+#step 5 - task2a.yml sets /etc/hosts files on containers
+ansible-playbook -i hosts task2a.yml -v
+
+# hosts files generated from templates.
+
+#step 6 - task2b.yml sets the ntp.conf on the containers
+ansible-playbook -i hosts task2b.yml -v
+
+ntp.conf files are generates from templates.
+
+#done.
+
+See the inventory hosts file and the init_vars.yml file for the sources of the j2 variables.
+
+
